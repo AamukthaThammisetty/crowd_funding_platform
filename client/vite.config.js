@@ -8,4 +8,20 @@ export default defineConfig({
     global: "globalThis",
     "process.env": {},
   },
+  build: {
+    target: ['esnext'], // ✅ or ['chrome89', 'safari14', 'firefox85']
+  },
+
+  optimizeDeps: { // 👈 optimizedeps
+    esbuildOptions: {
+      target: "esnext", 
+      // Node.js global to browser globalThis
+      define: {
+        global: 'globalThis'
+      },
+      supported: { 
+        bigint: true 
+      },
+    }
+  }, 
 });

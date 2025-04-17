@@ -5,12 +5,14 @@ import { useStateContext } from '../context';
 import { CustomButton } from './';
 import { logo, menu, search, thirdweb } from '../assets';
 import { navlinks } from '../constants';
+import { ConnectButton,useActiveAccount } from 'thirdweb/react'
+import { client } from '../client';
 
 const Navbar = () => {
   const navigate = useNavigate();
   const [isActive, setIsActive] = useState('dashboard');
   const [toggleDrawer, setToggleDrawer] = useState(false);
-  const { connect, address } = useStateContext();
+  const account = useActiveAccount();
 
   return (
     <div className="flex md:flex-row flex-col-reverse justify-between mb-[35px] gap-6">
@@ -22,8 +24,8 @@ const Navbar = () => {
         </div>
       </div>
 
-      <div className="sm:flex hidden flex-row justify-end gap-4">
-        <CustomButton 
+      <div className="flex-row justify-end hidden gap-4 sm:flex">
+        {/* <CustomButton 
           btnType="button"
           title={address ? 'Create a campaign' : 'Connect'}
           styles={address ? 'bg-[#1dc071]' : 'bg-[#8c6dfd]'}
@@ -31,7 +33,9 @@ const Navbar = () => {
             if(address) navigate('create-campaign')
             else connect()
           }}
-        />
+        /> */}
+
+        <ConnectButton client={client} /> 
 
         <Link to="/profile">
           <div className="w-[52px] h-[52px] rounded-full bg-[#2c2f32] flex justify-center items-center cursor-pointer">
@@ -41,7 +45,7 @@ const Navbar = () => {
       </div>
 
       {/* Small screen navigation */}
-        <div className="sm:hidden flex justify-between items-center relative">
+        <div className="relative flex items-center justify-between sm:hidden">
         <div className="w-[40px] h-[40px] rounded-[10px] bg-[#2c2f32] flex justify-center items-center cursor-pointer">
             <img src={logo} alt="user" className="w-[60%] h-[60%] object-contain" />
           </div>
@@ -80,11 +84,10 @@ const Navbar = () => {
             <div className="flex mx-4">
             <CustomButton 
               btnType="button"
-              title={address ? 'Create a campaign' : 'Connect'}
-              styles={address ? 'bg-[#1dc071]' : 'bg-[#8c6dfd]'}
+              title={account ? 'Create a campaign' : 'Connect'}
+              styles={account ? 'bg-[#1dc071]' : 'bg-[#8c6dfd]'}
               handleClick={() => {
-                if(address) navigate('create-campaign')
-                else connect();
+                if(account) navigate('create-campaign')
               }}
             />
             </div>

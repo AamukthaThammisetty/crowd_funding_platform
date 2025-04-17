@@ -9,14 +9,16 @@
     "deploy": "yarn build && npx thirdweb@latest upload dist"
   },
   "dependencies": {
-    "@thirdweb-dev/react": "^3",
-    "@thirdweb-dev/sdk": "^3",
     "ethers": "^5.7.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-router-dom": "^6.4.4"
+    "react-router-dom": "^6.4.4",
+    "thirdweb": "^5.94.2",
+    "uuid": "^11.1.0",
+    "viem": "^2.27.0"
   },
   "devDependencies": {
+    "@types/node": "^18.11.10",
     "@vitejs/plugin-react": "^2",
     "autoprefixer": "^10.4.13",
     "postcss": "^8.4.19",
